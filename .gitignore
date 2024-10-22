@@ -4,6 +4,19 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+# Bỏ qua file cấu hình nhạy cảm
+application.properties
+
+# Bỏ qua các file log
+*.log
+
+# Bỏ qua thư mục tạm
+temp/
+
+# Bỏ qua thư mục build
+build/
+
+
 ### STS ###
 .apt_generated
 .classpath
