@@ -6,7 +6,7 @@ import com.khanhdang.library_manage.dto.Category;
 import com.khanhdang.library_manage.exception.BookException;
 import com.khanhdang.library_manage.repository.AuthorRepository;
 import com.khanhdang.library_manage.repository.CategoryRepository;
-import com.khanhdang.library_manage.request.Book.BookCreationRequest;
+import com.khanhdang.library_manage.request.book.BookCreationRequest;
 import com.khanhdang.library_manage.response.BookResponseDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

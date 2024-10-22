@@ -20,7 +20,7 @@ public class UserRole {
     Long id;
     @ManyToOne // Mối quan hệ nhiều với User
     @JoinColumn(name = "id_user",referencedColumnName = "id") // Cột tham chiếu đến bảng users
-    private Users user;
+    private User user;
 
     @ManyToOne // Mối quan hệ nhiều với Role
     @JoinColumn(name = "id_role",referencedColumnName = "id") // Cột tham chiếu đến bảng roles

@@ -1,0 +1,11 @@
+# Bỏ qua file cấu hình nhạy cảm
+application.properties
+
+# Bỏ qua các file log
+*.log
+
+# Bỏ qua thư mục tạm
+temp/
+
+# Bỏ qua thư mục build
+build/

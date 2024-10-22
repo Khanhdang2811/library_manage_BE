@@ -1,9 +1,7 @@
-package com.khanhdang.library_manage.request.Book;
+package com.khanhdang.library_manage.request.book;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
-import java.util.logging.Level;
 
 @Data
 @Builder

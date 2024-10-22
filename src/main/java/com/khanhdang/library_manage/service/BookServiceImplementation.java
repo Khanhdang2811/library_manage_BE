@@ -8,10 +8,11 @@ import com.khanhdang.library_manage.mapper.BookMapper;
 import com.khanhdang.library_manage.repository.AuthorRepository;
 import com.khanhdang.library_manage.repository.BookRepository;
 import com.khanhdang.library_manage.repository.CategoryRepository;
-import com.khanhdang.library_manage.request.Book.BookCreationRequest;
-import com.khanhdang.library_manage.request.Book.BookUpdateRequest;
+import com.khanhdang.library_manage.request.book.BookCreationRequest;
+import com.khanhdang.library_manage.request.book.BookUpdateRequest;
 import com.khanhdang.library_manage.response.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -95,6 +96,7 @@ public class BookServiceImplementation implements BookService{
 
 
     @Override
+    @PreAuthorize("hasRole('ADMIN')")
     public void deleteBookById(String bookId) {
         // Kiểm tra xem sách có tồn tại không
         if (!bookRepository.existsById(Long.valueOf(bookId))) {

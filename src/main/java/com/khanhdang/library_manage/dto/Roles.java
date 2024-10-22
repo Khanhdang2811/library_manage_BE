@@ -1,11 +1,11 @@
 package com.khanhdang.library_manage.dto;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.mapstruct.Mapper;
+
+import java.util.Set;
 
 @Entity
 @Table ( name = "roles")
@@ -21,4 +21,8 @@ public class Roles {
     @Column (name = "role_name",nullable = false)
     String roleName;
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @ManyToMany(mappedBy = "roles")
+    Set<User> users;
 }

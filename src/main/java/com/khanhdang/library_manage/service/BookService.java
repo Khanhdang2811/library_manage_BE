@@ -1,8 +1,8 @@
 package com.khanhdang.library_manage.service;
 
 import com.khanhdang.library_manage.dto.Book;
-import com.khanhdang.library_manage.request.Book.BookCreationRequest;
-import com.khanhdang.library_manage.request.Book.BookUpdateRequest;
+import com.khanhdang.library_manage.request.book.BookCreationRequest;
+import com.khanhdang.library_manage.request.book.BookUpdateRequest;
 import com.khanhdang.library_manage.response.*;
 
 import java.util.List;

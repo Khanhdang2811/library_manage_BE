@@ -17,18 +17,6 @@ public interface BookRepository extends JpaRepository<Book,Long> {
     @Query("SELECT b FROM Book b WHERE b.category.id = :categoryId")
     List<Book> findByCategoryId(@Param("categoryId") Long categoryId);
 
-    @Query("SELECT b.author.authorName, COUNT(b) AS bookCount" +
-            " FROM Book b" +
-            " GROUP BY b.author.authorName" +
-            " ORDER BY bookCount DESC")
-    List<Object[]> findPopularAuthors();
-
-    @Query("SELECT EXTRACT(YEAR FROM b.publicationDate) AS year, COUNT(b) AS bookCount " +
-            "FROM Book b " +
-            "GROUP BY year " +
-            "ORDER BY bookCount DESC")
-    List<Object[]> findMostPopularYear();
-
     @Query("SELECT b FROM Book b WHERE b.title LIKE CONCAT('%', :title, '%')")
     List<Book> getAllBookByTitle(@Param("title") String title);
 

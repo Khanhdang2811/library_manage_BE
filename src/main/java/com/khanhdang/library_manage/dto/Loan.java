@@ -21,7 +21,7 @@ public class Loan {
     Long id;
     @ManyToOne
     @JoinColumn(name = "id_user",referencedColumnName = "id")
-    Users user;
+    User user;
     @Column(name = "borrowing_date")
     LocalDateTime borrowingDate;
     @Column(name = "due_date")

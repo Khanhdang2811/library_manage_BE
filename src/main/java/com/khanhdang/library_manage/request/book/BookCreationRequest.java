@@ -1,8 +1,5 @@
-package com.khanhdang.library_manage.request.Book;
+package com.khanhdang.library_manage.request.book;
 
-import com.khanhdang.library_manage.dto.Author;
-import com.khanhdang.library_manage.dto.Category;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
