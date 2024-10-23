@@ -5,7 +5,7 @@ target/
 !**/src/test/**/target/
 
 # Bỏ qua file cấu hình nhạy cảm
-#application.properties
+application.properties
 
 # Bỏ qua các file log
 *.log
