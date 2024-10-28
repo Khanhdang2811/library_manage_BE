@@ -24,6 +24,8 @@ import org.springframework.util.CollectionUtils;
 
 import java.text.ParseException;
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.StringJoiner;
@@ -109,7 +111,6 @@ public class AuthenticationImplementation implements AuthenticationService{
                 ))
                 .claim("scope", buildScope(user)) // Claim tùy chỉnh thêm vào token
                 .build();
-
         // Tạo payload từ các claim
         Payload payload = new Payload(jwtClaimsSet.toJSONObject());
 
@@ -119,7 +120,6 @@ public class AuthenticationImplementation implements AuthenticationService{
         try {
             // Ký token bằng khóa bí mật
             jwsObject.sign(new MACSigner(SIGNER_KEY.getBytes()));
-
             // Trả về token dưới dạng chuỗi
             return jwsObject.serialize();
         } catch (JOSEException e) {

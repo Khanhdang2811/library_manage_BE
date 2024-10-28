@@ -18,16 +18,18 @@ public class DatabaseConfig {
 
     // Các giá trị URL, username và password được mã hóa.
     @Value("${db.datasource.url}")
-    String urlDb = "UC/5LfaCpbwuhTfElpG2sd7DUNfkSwp2vbBz9lyAZvA60XW8gtK4+H7ioVK1l7TvKFqt3lL1eHNmIZqqntZm9Q==";
+    String urlDb;
 
     @Value("${db.datasource.username}")
-    String username = "64irSBtnVCE0LTBLO8J9+g3mkCfoSNgd4cyJhSrb5zc=";
+    String username;
 
     @Value("${db.datasource.password}")
-    String password = "znNiB6RJomQsp49K4pxpLR/nHhahN3SnttxMfp8NdKg=";
+    String password;
 
     // Đây là secret key và salt key để sử dụng cho việc giải mã (AES256).
+
     private final String secretKey = "khanhdang@2811";
+
     private final String saltKey = "11223344";
 
     // Bean này sẽ trả về một đối tượng DataSource, chứa các thông tin đã giải mã
@@ -39,13 +41,10 @@ public class DatabaseConfig {
         String decryptedUrl = AES256.decrypt(urlDb, secretKey, saltKey);
         String decryptedUsername = AES256.decrypt(username, secretKey, saltKey);
         String decryptedPassword = AES256.decrypt(password, secretKey, saltKey);
-
-
         dataSource.setUrl(decryptedUrl);
         dataSource.setUsername(decryptedUsername);
         dataSource.setPassword(decryptedPassword);
         dataSource.setDriverClassName("org.postgresql.Driver"); // Driver PostgreSQL
-
         return dataSource; // Trả về DataSource đã cấu hình
     }
 }

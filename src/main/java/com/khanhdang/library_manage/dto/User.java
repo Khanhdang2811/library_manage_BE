@@ -32,11 +32,11 @@ public class User {
     @Column(name = "deleted_date")
      LocalDateTime deletedDate;
     @Column(name = "created_id")
-     int createdId;
+    Long createdId;
     @Column(name = "updated_id")
-     int updatedId;
+    Long updatedId;
     @Column(name = "deleted_id")
-     int deletedId;
+    Long deletedId;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
