@@ -31,6 +31,7 @@ public class Loan {
     @Column(name = "status")
     String status;
 
+
     @PrePersist
     protected void onCreated(){
         borrowingDate = LocalDateTime.now();

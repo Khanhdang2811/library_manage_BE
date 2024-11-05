@@ -46,6 +46,11 @@ public class User {
     )
     Set<Roles> roles;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    Set<Loan> loans;
+
+
+
 
     //Phương thức này được gọi trước khi thực thể được lưu lần đầu tiên vào cơ sở dữ liệu
     @PrePersist

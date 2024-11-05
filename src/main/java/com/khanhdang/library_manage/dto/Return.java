@@ -30,4 +30,9 @@ public class Return {
     BigDecimal totalFine;
     @Column ( name = "description")
     String description;
+
+    @PrePersist
+    protected void  onCreated(){
+        returnDate = LocalDateTime.now();
+    }
 }

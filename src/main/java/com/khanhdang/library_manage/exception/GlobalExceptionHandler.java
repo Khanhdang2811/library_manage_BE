@@ -21,7 +21,6 @@ public class GlobalExceptionHandler {
                 .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
-
     @ExceptionHandler(UserException.class)
     public ResponseEntity<ApiResponse<?>> handleUserException(UserException ex) {
         ApiResponse<?> response = ApiResponse.builder()
@@ -61,6 +60,14 @@ public class GlobalExceptionHandler {
                 .message(e.getMessage())
                 .build();
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
+    }
+    @ExceptionHandler(LoanException.class)
+    public ResponseEntity<ApiResponse<?>> handleLoanException (LoanException ex){
+        ApiResponse<?> response = ApiResponse.builder()
+                .status(ApiStatus.ERROR)
+                .message(ex.getMessage())
+                .build();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
