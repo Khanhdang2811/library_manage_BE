@@ -22,10 +22,13 @@ import com.khanhdang.library_manage.response.LoanResponseDTO;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -150,6 +153,22 @@ public class LoanServiceImplementation implements LoanService {
         }
     }
 
+    //Check Loan Update at 00:00 PM
+    @Scheduled(cron = "0 0 0 * * ?")
+    @Transactional
+    public void updateOverDueLoans(){
+        List<Loan> activeLoans = loanRepository.findByStatusIn(Arrays.asList(STATUS_BORROWED));
+
+        LocalDateTime localDateTime = LocalDateTime.now();
+        List<Loan> overdueLoans = activeLoans.stream()
+                .filter(loan -> loan.getDueDate().isBefore(localDateTime))
+                .toList();
+        for (Loan loan : overdueLoans){
+            loan.setStatus(STATUS_OVERDUE);
+        }
+        loanRepository.saveAll(overdueLoans);
+    }
+
     @Override
     public ApiResponse<List<LoanDetailResponse>> getLoanDetailByIdLoan(Long idLoan) {
         Loan loan = loanRepository.findById(idLoan)
@@ -160,9 +179,7 @@ public class LoanServiceImplementation implements LoanService {
         if (!loan.getUser().getId().equals(currentUser.getId())) {
             throw new LoanException("Not authorized to view this loan");
         }
-
         List<LoanDetail> details = loanDetailRepository.findByLoan(loan);
-
         List<LoanDetailResponse> loanDetailResponses = details.stream()
                 .map(LoanMapper.INSTANCE::loanDetailToLoanDetailResponse)
                 .toList();
@@ -173,6 +190,7 @@ public class LoanServiceImplementation implements LoanService {
                 .data(loanDetailResponses)
                 .build();
     }
+
 
 
 }

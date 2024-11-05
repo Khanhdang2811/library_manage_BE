@@ -15,4 +15,6 @@ public interface LoanRepository extends JpaRepository<Loan, Long> {
     List<Loan> findByUserId( Long userId);
 
     List<Loan> findByUser(User user);
+
+    <T> List<Loan> findByStatusIn(List<T> list);
 }
